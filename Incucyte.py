@@ -1,10 +1,8 @@
 from matplotlib import pyplot as plt
-import numpy
+import sys
 import pandas
 import yaml
 import seaborn as sns 
-
-current_folder = "250123"
 
 def config_reader(folder: str)-> dict:
     with open(f"{folder}/groups.yaml") as file:
@@ -35,7 +33,12 @@ def plot_data (folder: str, grouped_data: dict):
         plt.savefig(f"{folder}/lineplot.png")
         
 
-data = read_table(current_folder)
-groups = config_reader(current_folder)
-grouped_data = group_data(data,groups)
-plot_data(current_folder, grouped_data)
+def main():
+    current_folder = "250123"
+    data = read_table(current_folder)
+    groups = config_reader(current_folder)
+    grouped_data = group_data(data,groups)
+    plot_data(current_folder, grouped_data)
+
+if __name__ == '__main__':
+    sys.exit(main())
